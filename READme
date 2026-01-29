@@ -1,0 +1,170 @@
+# Currency Converter
+
+A JavaFX desktop application that converts currencies in real-time using the ExchangeRate-API.
+
+## Features
+
+- 🌍 Real-time currency conversion
+- 💱 Support for 10 major currencies (USD, EUR, GBP, JPY, AUD, CAD, CHF, CNY, INR, MXN)
+- 🎨 Clean and intuitive user interface
+- ⚡ Fast API integration with proper error handling
+- 🧪 Tested with Boomerang API client
+
+## Prerequisites
+
+- Java 21 or higher
+- Maven
+- Internet connection (for API calls)
+- ExchangeRate-API key (free tier available)
+
+## Installation
+
+1. **Clone or download this project**
+
+2. **Get your API key:**
+   - Go to https://www.exchangerate-api.com/
+   - Sign up for a free account
+   - Copy your API key
+
+3. **Configure the API key:**
+   - Open `src/main/java/com/currencyconverter/service/ExchangeRateService.java`
+   - Replace `YOUR_API_KEY_HERE` with your actual API key:
+   ```java
+   private static final String API_KEY = "your_actual_api_key_here";
+   ```
+
+4. **Build the project:**
+   ```bash
+   mvn clean install
+   ```
+
+## Running the Application
+
+### Option 1: From IDE
+- Open the project in IntelliJ IDEA or Eclipse
+- Right-click on `Main.java` → Run
+
+### Option 2: From Command Line
+```bash
+mvn javafx:run
+```
+
+### Option 3: Run JAR file
+```bash
+java -jar target/converter-1.0-SNAPSHOT.jar
+```
+
+## Project Structure
+
+```
+converter/
+├── src/
+│   └── main/
+│       └── java/
+│           └── com/
+│               └── currencyconverter/
+│                   ├── Main.java                    # Application entry point
+│                   ├── model/
+│                   │   └── CurrencyData.java        # Data model for API responses
+│                   ├── service/
+│                   │   └── ExchangeRateService.java # API integration logic
+│                   └── ui/
+│                       └── ConverterUI.java         # JavaFX user interface
+├── pom.xml                                          # Maven configuration
+└── README.md
+```
+
+## How to Use
+
+1. **Launch the application**
+2. **Enter the amount** you want to convert
+3. **Select the source currency** (From)
+4. **Select the target currency** (To)
+5. **Click "Convert"** to see the result
+
+Example:
+- Amount: 100
+- From: USD
+- To: EUR
+- Result: 100.00 USD = 85.23 EUR
+
+## Dependencies
+
+- **JavaFX 21.0.1** - UI framework
+- **Gson 2.10.1** - JSON parsing
+- **Java HTTP Client** - API requests (built-in)
+
+## API Information
+
+This app uses ExchangeRate-API v6:
+- **Endpoint:** `https://v6.exchangerate-api.com/v6/{API_KEY}/latest/{CURRENCY}`
+- **Free tier:** 1,500 requests per month
+- **Documentation:** https://www.exchangerate-api.com/docs
+
+## Testing with Boomerang API
+
+You can test the API integration using Boomerang:
+
+1. Install Boomerang Chrome extension
+2. Test the endpoint:
+   ```
+   GET https://v6.exchangerate-api.com/v6/YOUR_API_KEY/latest/USD
+   ```
+3. Verify you get a 200 OK response with exchange rate data
+
+## Common Issues & Solutions
+
+### Problem: "Cannot resolve symbol JavaFX"
+**Solution:**
+- Make sure JavaFX is in your pom.xml dependencies
+- Reload Maven project: Right-click → Maven → Reload Project
+
+### Problem: "Module not found: javafx.controls"
+**Solution:**
+- Add VM options: `--module-path PATH_TO_FX --add-modules javafx.controls`
+- Or set in IDE run configuration
+
+### Problem: API returns 401 Unauthorized
+**Solution:**
+- Check that you've added your actual API key
+- Verify the key is active on exchangerate-api.com
+
+### Problem: "Connection refused" or timeout
+**Solution:**
+- Check your internet connection
+- Verify the API endpoint URL is correct
+- Check if you've exceeded your monthly request limit
+
+## Enhancements (Optional)
+
+Want to improve this app? Try adding:
+
+- ✨ Caching to reduce API calls
+- 📊 Historical exchange rate data
+- 💾 Conversion history
+- 🔄 Swap button to quickly reverse currencies
+- 🌙 Dark mode
+- 📱 More currencies
+- 📈 Charts showing rate trends
+
+## License
+
+This is a learning project - feel free to use and modify as needed.
+
+## Credits
+
+- ExchangeRate-API for providing free exchange rate data
+- JavaFX for the UI framework
+- Boomerang for API testing
+
+## Support
+
+Having issues?
+1. Check the troubleshooting guide in the project documentation
+2. Verify your API key is correct
+3. Make sure all dependencies are installed
+4. Check that Java 21+ is installed: `java -version`
+
+---
+
+**Built with ☕ and JavaFX**
